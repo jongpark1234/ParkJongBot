@@ -10,7 +10,6 @@ from config import TOKEN
 from discord.utils import get
 from discord.message import implement_partial_methods
 from discord.ext import commands
-from discord_components import *
 import random
 import asyncio
 import glob
@@ -19,7 +18,6 @@ import math
 import datetime
 
 bot = commands.Bot(command_prefix="!")
-DiscordComponents(bot)
 bot.remove_command('help')
 
 @bot.event
