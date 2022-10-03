@@ -8,16 +8,15 @@ from Database.emoji import *
 from Database.mapnum import *
 from config import TOKEN
 from discord.utils import get
-from discord.message import implement_partial_methods
 from discord.ext import commands
 import random
 import asyncio
 import glob
 import pickle
 import math
-import datetime
+from datetime import datetime
 
-bot = commands.Bot(command_prefix="!")
+bot = commands.Bot(command_prefix="!", intents= discord.Intents.all())
 bot.remove_command('help')
 
 @bot.event
@@ -366,6 +365,9 @@ def MobSetting(ctx, region, mobchance): # 전투 몹 설정 함수
     mobicon[ctx.author.id] = eval(f'mob_{region}{mobchance}.icon')
 
 @bot.command()
+async def 수능(ctx, *comment):
+    await ctx.send(f"{discord.utils.get(ctx.guild.roles, name='삼수생').mention} 수능까지 {(datetime.strptime('20221117', '%Y%m%d') - datetime.now()).days}일 남았습니다 {' '.join(comment)}")
+@bot.command()
 async def 월드맵(ctx):
     try:
         embed = discord.Embed(title=keyword_mapnum[mapnum[ctx.author.id]][1], # Embed 설정
@@ -660,4 +662,4 @@ async def 사냥(ctx):
 
 
 
-bot.run(TOKEN)
+bot.run(token=TOKEN)
