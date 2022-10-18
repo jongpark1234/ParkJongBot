@@ -366,7 +366,11 @@ def MobSetting(ctx, region, mobchance): # 전투 몹 설정 함수
 
 @bot.command()
 async def 수능(ctx, *comment):
-    await ctx.send(f"{discord.utils.get(ctx.guild.roles, name='삼수생').mention} 수능까지 {(datetime.strptime('20221117', '%Y%m%d') - datetime.now()).days}일 남았습니다 {' '.join(comment)}")
+    remain = (datetime.strptime('20221117', '%Y%m%d') - datetime.now())
+    day, second = remain.days, remain.seconds
+    hour, second = divmod(second, 3600)
+    minute, second = divmod(second, 60)
+    await ctx.send(f"{discord.utils.get(ctx.guild.roles, name='삼수생').mention} 수능까지 {day}일 {hour}시간 {minute}분 {second}초 남았습니다 {' '.join(comment)}")
 @bot.command()
 async def 월드맵(ctx):
     try:
